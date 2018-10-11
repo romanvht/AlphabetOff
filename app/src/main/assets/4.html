@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+  <html manifest="example.appcache">
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Перемещайте буквы по полю. Когда две одинаковые буквы вместе, они сливаются в новую плитку со следующей буквой! Бейте рекорды игроков и соревнуйтесь с друзьями :)">
+    <title>Головоломка Алфавит</title>
+	<script src="js/local_storage_manager.js"></script>
+	<link id="style" href="" rel="stylesheet" type="text/css">
+	<script>
+		var storage = new LocalStorageManager;
+		var version = "v2.4.1";
+		document.getElementById("style").setAttribute("href", "css/"+storage.getStyle()+".css?"+version);
+	</script> 
+    <link href="css/style.css?" rel="stylesheet" type="text/css">
+    <link href="css/4.css?" rel="stylesheet" type="text/css">
+    <link href="css/block-color.css?" rel="stylesheet" type="text/css">
+	<meta id="theme-meta" name="theme-color" content="#000000">
+	<script>
+		window.onload = function () {
+			var preloader = document.getElementById('p_prldr');
+			preloader.classList.add('fadeout');
+			setTimeout(function(){
+				preloader.parentNode.removeChild(preloader);
+			}, 200);
+		};
+		
+		document.addEventListener("DOMContentLoaded", function(event) {	 
+			setInterval(load_get('https://alphabet.romanvht.ru/top.php?cell=4', 'top', true),1000);  
+		});
+	</script> 
+    </head>
+  <body>
+  <div id="p_prldr"><span class="svg_anm"></span></div>
+  <div class="main_links"><a class="link anim selected" href="4.html">4x4</a><a class="link anim" href="5.html">5x5</a><a class="link anim" href="6.html">6x6</a><a class="link anim" href="7.html">7x7</a></div>
+    <div class="heading">
+     <div class="nick-container">
+       <div class="nick"><input id="nick" type="text"></div>
+     </div>  
+     <div class="scores-container">
+      <div class="score-container"></div>
+      <div class="best-container"></div>
+     </div>
+    </div>
+    <div class="game-container">
+     <div class="game-message">
+      <p></p>
+      <div class="lower">
+       <a class="keep-playing-button">Продолжить</a>
+       <a class="retry-button">Еще</a>
+       <div class="score-sharing"></div>
+       <div id="viewport"></div>
+      </div>
+     </div>
+     
+		<div class="game-body">
+		
+			<div class="grid-container">
+				<div class="grid-row">
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+					<div class="grid-cell"></div>
+				</div>
+			</div>
+			
+			 <div class="tile-container">
+			  <div class="tile tile-2 tile-position-2-1 tile-new">
+			   <div class="tile-inner">А</div>
+			  </div>
+			  <div class="tile tile-2 tile-position-4-2 tile-new">
+			   <div class="tile-inner">А</div>
+			  </div>
+			 </div>
+		</div>
+    </div>
+	<div class="control">
+		<div class="restart-button"><span>&#8634;</span> Заного</div>
+		<div class="color-button"><span id="color" class="color"></span> Тема</div>
+		<div class="cancel-button"><span>&#8630;</span> Отмена</div>
+	</div>
+
+  <script src="js/animframe_polyfill.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator_ru.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/game_manager.js"></script>
+  <script src="js/dom_edit.js?"></script>
+  <script>
+  window.requestAnimationFrame(function () {
+    new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
+  });  
+  </script>
+  <noscript>
+  <p><b>Для работы приложения нужен Javascript!</b></p>
+  </noscript>
+
+<div id="top"></div>
+		   
+</body></html>
